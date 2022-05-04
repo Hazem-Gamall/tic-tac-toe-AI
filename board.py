@@ -14,7 +14,6 @@ class Board:
         self.computer = computer
 
     def result(self, action):
-        print('action:', action)
         i, j, move = action
 
         if self.board[i][j] == 0:

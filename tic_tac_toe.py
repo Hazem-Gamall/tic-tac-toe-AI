@@ -49,6 +49,7 @@ class TicTacToe:
 
 
     def best_move(self):
+        print("Computer's move...")
         allowed_moves = self.board.actions(self.computer)
         best_score = -math.inf
         best_move = ()
@@ -74,7 +75,7 @@ class TicTacToe:
             8:[0,1],
             9:[0,2]
         }
-        user_input = int(input("where to?:"))
+        user_input = int(input("Your move:"))
         if user_input > 9 or user_input < 1:
             raise Exception("invalid number")
         move = numpad_move_lookup[user_input]
