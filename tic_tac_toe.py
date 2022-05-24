@@ -1,8 +1,8 @@
 import math
-from board import X, O, Board
+from board import Board, X, O
 
 class TicTacToe:
-    def __init__(self, first:bool) -> None:
+    def __init__(self, first:bool, board:Board) -> None:
         self.first = first
 
         if first:
@@ -12,7 +12,7 @@ class TicTacToe:
             self.human = O
             self.computer = X
     
-        self.board = Board(self.human, self.computer)
+        self.board = board
 
 
     
@@ -62,6 +62,7 @@ class TicTacToe:
                 best_score = score
                 best_move = move
         self.board.result(best_move)
+        return best_move
 
     def getInput(self):
         numpad_move_lookup={

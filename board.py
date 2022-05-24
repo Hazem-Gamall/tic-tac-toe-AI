@@ -13,26 +13,33 @@ class Board:
         self.human = human
         self.computer = computer
 
+    def reset(self):
+        self.board = [
+        [0,0,0],
+        [0,0,0],
+        [0,0,0] 
+        ] 
+
     def result(self, action):
-        i, j, move = action
+        if not self.is_terminal():
+            i, j, move = action
 
-        if self.board[i][j] == 0:
-            self.board[i][j] = move
-        else:
-            raise Exception("You can't play there")    
-
-        if self.is_terminal():
-            self.print_board()
-            if self.check_draw():
-                print("Draw!!!")
-                exit()
-            elif action[2] == self.computer:
-                print("Computer Won")
-                exit()
+            if self.board[i][j] == 0:
+                self.board[i][j] = move
             else:
-                print("You Won!")
-                exit()
+                raise Exception("You can't play there")    
 
+        # if self.is_terminal():
+        #     self.print_board()
+        #     if self.check_draw():
+        #         print("Draw!!!")
+        #         return 0
+        #     elif action[2] == self.computer:
+        #         print("Computer Won")
+        #         return 2
+        #     else:
+        #         print("You Won!")
+        #         return 1
 
     def utility(self):
         if self.board[0][0] == self.computer and self.board[0][0] == self.board[0][1] and  self.board[0][0] == self.board[0][2]:
