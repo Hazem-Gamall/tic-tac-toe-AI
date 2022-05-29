@@ -109,7 +109,18 @@ def make_move(i, j):
 
 
 
-
+def ai_first_move():
+    w = create_subwindow('Loading...')
+    move = []
+    thread = Thread(target=lambda: move.append(tic_tac_toe_AI.best_move()))
+    thread.start()
+    root.withdraw()
+    w.update()
+    thread.join() 
+    root.deiconify()
+    move = move[0]
+    w.destroy()
+    board_buttons[move[0]][move[1]]['text'] = 'X'
 
 
 def main():
@@ -132,17 +143,7 @@ def main():
     board = Board(human,computer)
     tic_tac_toe_AI = TicTacToe(first, board)
     if computer == X:
-        w = create_subwindow('Loading...')
-        move = []
-        thread = Thread(target=lambda: move.append(tic_tac_toe_AI.best_move()))
-        thread.start()
-        root.withdraw()
-        w.update()
-        thread.join() 
-        root.deiconify()
-        move = move[0]
-        w.destroy()
-        board_buttons[move[0]][move[1]]['text'] = 'X'
+        ai_first_move()
 
     root.mainloop()
 
