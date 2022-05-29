@@ -42,6 +42,12 @@ class TicTacToe:
         return value
 
 
+    def minimax(self): 
+        value = self.min_val()
+        return value
+
+
+
     def best_move(self):
         print("Computer's move...")
         allowed_moves = self.board.actions(self.computer)
@@ -49,7 +55,7 @@ class TicTacToe:
         best_move = ()
         for move in allowed_moves:
             self.board.board[move[0]][move[1]] = self.computer
-            score = self.min_val()
+            score = self.minimax()
             self.board.board[move[0]][move[1]] = 0
             # print(move, score)
             if score > best_score:
