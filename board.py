@@ -40,28 +40,34 @@ class Board:
         #     else:
         #         print("You Won!")
         #         return 1
+    def check_for_win(self, player):
+        if self.board[0][0] == player and self.board[0][0] == self.board[0][1] and  self.board[0][0] == self.board[0][2]:
+            return True
+        elif self.board[1][0] == player and self.board[1][0] == self.board[1][1] and  self.board[1][0] == self.board[1][2]:
+            return True
+        elif self.board[2][0] == player and  self.board[2][0] == self.board[2][1] and  self.board[2][0] == self.board[2][2]:
+            return True
+        elif self.board[0][0] == player and  self.board[0][0] == self.board[1][0] and  self.board[0][0] == self.board[2][0]:
+            return True
+        elif self.board[0][1] == player and  self.board[0][1] == self.board[1][1] and  self.board[0][1] == self.board[2][1]:
+            return True
+        elif self.board[0][2] == player and  self.board[0][2] == self.board[1][2] and  self.board[0][2] == self.board[2][2]:
+            return True
+        elif self.board[0][0] == player and  self.board[0][0] == self.board[1][1] and  self.board[0][0] == self.board[2][2]:
+            return True
+        elif self.board[0][2] == player and  self.board[0][2] == self.board[1][1] and  self.board[0][2] == self.board[2][0]:
+            return True
+        else:
+            return False
+        
 
     def utility(self):
-        if self.board[0][0] == self.computer and self.board[0][0] == self.board[0][1] and  self.board[0][0] == self.board[0][2]:
+        if self.check_for_win(self.computer):
             return 10
-        if self.board[1][0] == self.computer and self.board[1][0] == self.board[1][1] and  self.board[1][0] == self.board[1][2]:
-            return 10
-        if self.board[2][0] == self.computer and  self.board[2][0] == self.board[2][1] and  self.board[2][0] == self.board[2][2]:
-            return 10
-        if self.board[0][0] == self.computer and  self.board[0][0] == self.board[1][0] and  self.board[0][0] == self.board[2][0]:
-            return 10
-        if self.board[0][1] == self.computer and  self.board[0][1] == self.board[1][1] and  self.board[0][1] == self.board[2][1]:
-            return 10
-        if self.board[0][2] == self.computer and  self.board[0][2] == self.board[1][2] and  self.board[0][2] == self.board[2][2]:
-            return 10
-        if self.board[0][0] == self.computer and  self.board[0][0] == self.board[1][1] and  self.board[0][0] == self.board[2][2]:
-            return 10
-        if self.board[0][2] == self.computer and  self.board[0][2] == self.board[1][1] and  self.board[0][2] == self.board[2][0]:
-            return 10
+        elif self.check_for_win(self.human):
+            return -10
         elif self.check_draw():
             return 0
-        else:
-            return -10
         
     
     def is_terminal(self):

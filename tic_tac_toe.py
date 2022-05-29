@@ -19,7 +19,7 @@ class TicTacToe:
 
     def max_val(self):
         if self.board.is_terminal():
-            # print(utility(state, X))
+            # print(self.board.utility())
             return self.board.utility()
         value = -math.inf
         for action in self.board.actions(self.computer):
@@ -31,7 +31,7 @@ class TicTacToe:
 
     def min_val(self):
         if self.board.is_terminal():
-            # print(utility(state, O))
+            # print(self.board.utility())
             return self.board.utility()
         value = math.inf
         for action in self.board.actions(self.human):
@@ -42,9 +42,6 @@ class TicTacToe:
         return value
 
 
-    def minimax(self): 
-        value = self.min_val()
-        return value
 
 
 
@@ -55,7 +52,7 @@ class TicTacToe:
         best_move = ()
         for move in allowed_moves:
             self.board.board[move[0]][move[1]] = self.computer
-            score = self.minimax()
+            score = self.min_val()
             self.board.board[move[0]][move[1]] = 0
             # print(move, score)
             if score > best_score:
